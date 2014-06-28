@@ -23,13 +23,13 @@ body{
 
 a{
 	text-decoration: none;
-	color:#666;
+	color:#fff;
 }
 	a:hover{
 		color:#999;
 	}
 p{
-	line-height: 0em;
+	line-height: 2em;
 	margin:0 0 20px;
 	text-align: center;
 }
