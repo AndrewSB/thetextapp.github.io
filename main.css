@@ -38,8 +38,7 @@ p{
 	max-width: 410px;
 	margin:355px auto;
 
-	text-align: center;
-	vertical-align:middle;
+	
 
 }
 
@@ -48,11 +47,9 @@ p{
 	padding:20px;
 	background:#ffffff;
 
-	text-align: center;
-	vertical-align:middle;
 	
-	//border-radius:5px;
-	//border:#CCC 1px solid;
+	border-radius:5px;
+	border:#CCC 1px solid;
 }
 
 .links{
