@@ -13,6 +13,10 @@ body{
 	background:#ffffff;
 	text-align:center;
 
+	
+	background-image:url(mobilePhoneMockup1.png);
+    	background-position:center top;
+    	background-repeat:no-repeat;
 
 }
 
