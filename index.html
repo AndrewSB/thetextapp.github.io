@@ -15,6 +15,33 @@
             font-size: 24px;
         }  
 
+
+        #typed-cursor{
+    opacity: 1;
+    font-weight: 100;
+    -webkit-animation: blink 0.7s infinite;
+    -moz-animation: blink 0.7s infinite;
+    -ms-animation: blink 0.7s infinite;
+    -o-animation: blink 0.7s infinite;
+    animation: blink 0.7s infinite;
+}
+@keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-webkit-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-moz-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+
+
     	</style>
 
 
@@ -24,27 +51,24 @@
     
     <div id="container"></div>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-    
+    <script src="typed.js"></script>
+
     <script>
-            
-        //define text
-        var text = 'Hello there!';
-
-        //text is split up to letters
-        $.each(text.split(''), function(i, letter){
-
-            //we add 100*i ms delay to each letter 
-            setTimeout(function(){
-
-                //we add the letter to the container
-                $('#container').html($('#container').html() + letter);
-            
-            }, 100*i);
+    $(function(){
+        $(".element").typed({
+            strings: ["First sentence.", "Second sentence."],
+            typeSpeed: 30, // typing speed
+            backDelay: 500, // pause before backspacing
+            loop: false, // loop on or off (true or false)
+            loopCount: false, // number of loops, false = infinite
+            callback: function(){ } // call function after typing is done
         });
+    });
+</script>
 
-    </script>
+
+
+<div class="element"></div>
 
 </body>
 
