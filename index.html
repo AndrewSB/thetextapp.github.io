@@ -52,20 +52,14 @@
     <div id="container"></div>
 
     <script src="typed.js"></script>
-
-    <script>
-    $(function(){
-        $(".element").typed({
-            strings: ["First sentence.", "Second sentence."],
-            typeSpeed: 30, // typing speed
-            backDelay: 500, // pause before backspacing
-            loop: false, // loop on or off (true or false)
-            loopCount: false, // number of loops, false = infinite
-            callback: function(){ } // call function after typing is done
-        });
-    });
+<script>
+  $(function(){
+      $(".element").typed({
+        strings: ["First sentence.", "Second sentence."],
+        typeSpeed: 0
+      });
+  });
 </script>
-
 
 
 <div class="element"></div>
