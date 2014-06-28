@@ -43,6 +43,9 @@ p{
 	margin:10px auto;
 	padding:20px;
 	background:#ffffff;
+
+	text-align: center;
+	
 	//border-radius:5px;
 	//border:#CCC 1px solid;
 }
