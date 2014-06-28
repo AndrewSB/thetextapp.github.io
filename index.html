@@ -26,31 +26,40 @@
     
     <div id="container"></div>
 
-    <!-- 
-        We use Google's CDN to serve the jQuery js libs. 
-        To speed up the page load we put these scripts at the bottom of the page 
-    -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-    
-    <script>
-            
-        //define text
-        var text = 'Meet Text :)';
-
-        //text is split up to letters
-        $.each(text.split(''), function(i, letter){
-
-            //we add 100*i ms delay to each letter 
-            setTimeout(function(){
-
-                //we add the letter to the container
-                $('#container').html($('#container').html() + letter);
-            
-            }, 100*i);
+    $.fn.typer = function (text, options) {
+    options = $.extend({}, {
+        delay: 1000,
+        duration: 1000,
+        easing: 'linear',
+        endless: false
+    }, options);
+    var elem = $(this);
+    (function loop(i) {
+        var e = typeof text === 'string' ? text : text[i];
+        // strip html tags, might be helpful
+        // e.replace(/(<.*?>)/ig,"")
+        $({len: 0}).delay(options.delay).animate({len: e.length}, {
+            duration: options.duration,
+            easing: options.easing,
+            step: function (now) {
+                var pos = Math.ceil(now),
+                    char = e.substr(pos, 0);
+                elem.html(e.substr(0, pos));
+            },
+            complete: function () {
+                i++;
+                if (i === text.length && !options.endless) {
+                    return;
+                } else if (i === text.length) {
+                    i = 0;
+                }
+                loop(i);
+            }
         });
+    })(0);
+};
 
-    </script>
+$('#foo').typer(['<i>Anyone</i> <u>is</u> <b>awesome</>!', 'Foo bar.']);
 
    
 
