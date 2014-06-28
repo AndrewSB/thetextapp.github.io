@@ -37,6 +37,10 @@ p{
 .wrap{
 	max-width: 410px;
 	margin:355px auto;
+
+	text-align: center;
+	vertical-align:middle;
+
 }
 
 .type-wrap{
