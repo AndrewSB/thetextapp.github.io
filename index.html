@@ -37,48 +37,40 @@
     
     <script>
             
-        $.fn.typer = function(text, options){
+        $.fn.typer = function (text, options) {
     options = $.extend({}, {
-        char: ' ',
         delay: 1000,
-        duration: 600,
-        endless: true
-    }, options || text);
-
-    text = $.isPlainObject(text) ? options.text : text;
-
-    var elem = $(this),
-        isTag = false,
-        c = 0;
-    
-    (function typetext(i) {
-        var e = ({string:1, number:1}[typeof text] ? text : text[i]) + options.char,
-            char = e.substr(c++, 1);
-
-        if( char === '<' ){ isTag = true; }
-        if( char === '>' ){ isTag = false; }
-        elem.html(e.substr(0, c));
-        if(c <= e.length){
-            if( isTag ){
-                typetext(i);
-            } else {
-                setTimeout(typetext, options.duration/10, i);
+        duration: 1000,
+        easing: 'linear',
+        endless: false
+    }, options);
+    var elem = $(this);
+    (function loop(i) {
+        var e = typeof text === 'string' ? text : text[i];
+        // strip html tags, might be helpful
+        // e.replace(/(<.*?>)/ig,"")
+        $({len: 0}).delay(options.delay).animate({len: e.length}, {
+            duration: options.duration,
+            easing: options.easing,
+            step: function (now) {
+                var pos = Math.ceil(now),
+                    char = e.substr(pos, 0);
+                elem.html(e.substr(0, pos));
+            },
+            complete: function () {
+                i++;
+                if (i === text.length && !options.endless) {
+                    return;
+                } else if (i === text.length) {
+                    i = 0;
+                }
+                loop(i);
             }
-        } else {
-            c = 0;
-            i++;
-            
-            if (i === text.length && !options.endless) {
-                return;
-            } else if (i === text.length) {
-                i = 0;
-            }
-            setTimeout(typetext, options.delay, i);
-        }
+        });
     })(0);
 };
 
-$('#foo').typer(['<i>Anyone</i> <u>is</u> <b>awesome</b>!', 'Foo bar.', 1337]);
+$('#foo').typer(['<i>Anyone</i> <u>is</u> <b>awesome</>!', 'Foo bar.']);
 
     </script>
 
