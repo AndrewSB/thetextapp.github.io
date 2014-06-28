@@ -36,14 +36,14 @@ p{
 
 .wrap{
 	max-width: 410px;
-	margin:355px 100px;
+	margin:355px auto;
 
 	
 
 }
 
 .type-wrap{
-	margin:10px 100px;
+	margin:10px auto;
 	padding:20px;
 	background:#ffffff;
 
